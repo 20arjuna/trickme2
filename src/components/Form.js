@@ -1,17 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import axios from 'axios';
 import { CircularProgress, Button } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import { sizing } from '@material-ui/system';
 
-//import { Button } from "semantic-ui-react";
 
-// const styles = {
-//     //style for font size
-//     resize:{
-//         fontSize:500
-//     },
-// }
 
 
 function ButtonComponent(props) {
@@ -28,7 +21,11 @@ function ButtonComponent(props) {
   );
 }
 
+
+
 class Form extends Component {
+
+
 
     constructor(props)
     {
@@ -36,9 +33,25 @@ class Form extends Component {
 
         this.state = {
             question: '',
-            loading: false
+            loading: false,
+            showing: false,
+            suggestions: ''
         };
     }
+
+    // function GetSuggestions()
+    // {
+    //     const [suggestions, setSuggestions] = useState(0);
+    //
+    //         useEffect(() => {
+    //             fetch('/link').then(res => res.json()).then(data => {
+    //                 setSuggestions(data.suggestions);
+    //             });
+    //         }, []);
+    //
+    //     console.log(suggestions);
+    //     return suggestions;
+    // }
 
     handleQuestionChange = (event) => {
         this.setState({question: event.target.value})
@@ -57,21 +70,18 @@ class Form extends Component {
             .catch(error => {
                 console.log(error)
             })
+
+        // this.setState({ suggestions: GetSuggestions()});
+        // this.setState({ showing: true});
     }
 
 
     render() {
+        const { showing } = this.state.showing;
         return(
                 <div>
                 <form onSubmit={this.submitHandler}>
-                    {/*<textarea
-                        value = {this.state.question}
-                        onChange={this.handleQuestionChange}
-                        rows = "4"
-                        cols = "50"
-                        name ="textInput"
-                        placeholder="Enter question here"
-                    />*/}
+
                     <TextField
                         InputProps={{ style: { fontSize: 15 } }}
                         id="outlined-multiline-static"
@@ -86,46 +96,25 @@ class Form extends Component {
                     />
                     <h5></h5>
 
-                    {/*}<input className = "center"
-                           type="submit"
-                           name="my-form"
-                           value="Link Entities">
-                    </input>*/}
-
-                    {/*}<Button size="large"
-                            variant="contained"
-                            color="primary"
-                            type="submit">
-                    Go!
-                    </Button>*/}
-
                     <ButtonComponent loading={this.state.loading} />
 
-                    {/*<Button
-                    onClick={async () => {
-                        //const movie = { title, rating };
-                        const response = await fetch("/link", {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json"
-                            },
-                            body: JSON.stringify({"question": this.state.question})
-                        });
+                    <h5></h5>
 
-                        if (response.ok) {
-                            console.log("response worked!");
-                            // onNewMovie(movie);
-                            // setTitle("");
-                            // setRating(1);
-                        }
-                        else
-                        {
-                            console.log("error");
-                        }
-                    }}
-                    >
-                    submit
-                    </Button>*/}
+                    { this.state.showing
+                        ? (<TextField
+                            InputProps={{ style: { fontSize: 15 } }}
+                            id="outlined-multiline-static"
+                            label={<span style={{ fontSize: 15 }}>Suggestions</span>}
+                            value = {this.state.suggestions}
+
+                            multiline
+                            rows={10}
+                            style = {{width: 700}}
+
+                            variant="outlined"
+                          />)
+                        :  null
+                    }
                 </form>
             </div>
 

@@ -10,4 +10,4 @@ def reverse():
     #print(question)
     #question = question[::-1]
     print(question)
-    return {'string': question}
+    return {'suggestions': question}

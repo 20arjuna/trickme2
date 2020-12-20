@@ -19,9 +19,9 @@ class SuggestionDisplay extends Component
             <div>
                 <h5></h5>
                 <TextField
-                    InputProps={{ style: { fontSize: 15 } }}
+                    InputProps={{ style: { fontSize: 15, display: 'none' } }}
                     id="outlined-multiline-static"
-                    label={<span style={{ fontSize: 15 }}>Suggestions</span>}
+                    label={<span style={{ fontSize: 15, display: 'none' }}>Suggestions</span>}
                     value = {this.state.suggestions}
                     onChange={this.handleQuestionChange}
                     multiline
