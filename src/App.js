@@ -4,6 +4,7 @@ import './mystyle.css'
 import Header from './components/Header'
 import IntroText from './components/IntroText'
 import Form from './components/Form'
+import SuggestionDisplay from './components/SuggestionDisplay'
 import React, { Component } from 'react'
 
 class App extends Component
@@ -15,6 +16,7 @@ class App extends Component
                     <Header />
                     <IntroText />
                     <Form />
+                    <SuggestionDisplay />
                 </div>
         );
     }
