@@ -17,7 +17,7 @@ function ButtonComponent(props) {
             type="submit"
             disabled={loading}>
       {loading && <CircularProgress size={14} />}
-      {!loading && 'Submit'}
+      {!loading && "Submit"}
     </Button>
   );
 }
@@ -36,7 +36,8 @@ class Form extends Component {
             question: '',
             loading: false,
             showing: false,
-            suggestions: ''
+            suggestions: '',
+            suggestionKey: Math.random()
         };
     }
 
@@ -60,7 +61,8 @@ class Form extends Component {
 
     submitHandler = (event) => {
         event.preventDefault()
-        this.setState({ showing: true })
+        this.setState({ suggestionKey: Math.random() });
+        this.setState({ showing: true });
         this.setState({ loading: true });
          //3 seconds
         //console.log(this.state)
@@ -80,7 +82,7 @@ class Form extends Component {
 
 
     render() {
-        if(this.state.showing == false)
+        if(this.state.showing === false)
         {
             return(
                     <div>
@@ -111,7 +113,7 @@ class Form extends Component {
 
             )
         }
-        else if(this.state.showing == true)
+        else if(this.state.showing === true)
         {
 
             return(
@@ -134,7 +136,7 @@ class Form extends Component {
 
                         <ButtonComponent loading={this.state.loading} />
 
-                        <SuggestionDisplay />
+                        <SuggestionDisplay key={this.state.suggestionKey} />
 
 
                         <h5></h5>

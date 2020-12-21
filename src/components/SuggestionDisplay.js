@@ -12,26 +12,25 @@ class SuggestionDisplay extends Component {
         };
     }
 
-    // componentDidMount()
-    // {
-    //     axios.get('/suggestions')
-    //         .then(response => this.setState({ suggestions: response.data.output }));
-    //
-    // }
+    componentDidMount()
+    {
+        axios.get('/suggestions')
+            .then(response => this.setState({ suggestions: response.data.output }));
+
+    }
 
 
     // setTimeout(function(){  }, 5000);
-
+    // const [suggestions, setSuggestions] = useState(0);
+    //
+    //     useEffect(() => {
+    //         fetch('/link').then(res => res.json()).then(data => {
+    //             console.log("got here boys!")
+    //             setSuggestions(data.suggestions);
+    //         });
+    //     }, []);
 
     render() {
-        const [suggestions, setSuggestions] = useState(0);
-
-            useEffect(() => {
-                fetch('/link').then(res => res.json()).then(data => {
-                    console.log("got here boys!")
-                    setSuggestions(data.suggestions);
-                });
-            }, []);
         return (
             <div>
                 <h5></h5>
